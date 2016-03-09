@@ -1,5 +1,4 @@
 #include <libargs.h>
-#include <stdio.h>
 
 static int   treat_large(t_option *option, char const *argv)
 {
@@ -13,6 +12,7 @@ static int   treat_large(t_option *option, char const *argv)
     {
       new = LIST_NEW(t_options_value);
       new->value = ft_strdup(data[1]);
+      option->nb_values++;
       LIST_PUSH_BACK(&option->values, new);
     }
     free(data[0]);

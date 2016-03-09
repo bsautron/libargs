@@ -3,11 +3,12 @@ DEPENDENCIES = libft \
 								liblist \
 								libhtab
 SOURCES = add_option.c \
-					is_an_option.c \
 					parse_options.c \
 					get_option.c \
 					show_args.c \
-					init_options.c
+					init_options.c \
+					option_is_set.c \
+					get_values_option.c
 
 SOURCES_FOLDER = sources
 
