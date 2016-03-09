@@ -1,10 +1,13 @@
 NAME = libargs
 DEPENDENCIES = libft \
-								liblist
+								liblist \
+								libhtab
 SOURCES = add_option.c \
 					is_an_option.c \
 					parse_options.c \
-					show_options.c
+					get_option.c \
+					show_args.c \
+					init_options.c
 
 SOURCES_FOLDER = sources
 
