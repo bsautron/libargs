@@ -25,6 +25,19 @@ static void   print_values(t_option *option)
   }
 }
 
+static void   print_argc(int argc)
+{
+  ft_putstr("argc: ");
+  ft_putnbr(argc);
+  ft_putchar('\n');
+}
+
+static void   print_argv(char **argv)
+{
+  ft_putstr("argc: ");
+  ft_putstr_tab(argv);
+}
+
 void    show_args(t_args args)
 {
   t_list_man_option   *list_man;
@@ -38,4 +51,6 @@ void    show_args(t_args args)
     print_values(option);
     list_man = list_man->next;
   }
+  print_argc(args.argc);
+  print_argv(args.argv);
 }

@@ -23,6 +23,8 @@ typedef struct  s_args
 {
   t_list_man_option *mans;
   t_htab            options;
+  int               argc;
+  char              **argv;
 }               t_args;
 
 typedef struct  s_options_value

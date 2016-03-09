@@ -74,35 +74,37 @@ static int   find_option_in_args(t_option *option, int *setting, int argc, char 
   }
   return (find);
 }
-//
-// static char     **get_args(int *setting, int argc, char const **argv)
-// {
-//   int             i;
-//   int             j;
-//   char            **args;
-//
-//   i = 0;
-//   j = 0;
-//   args = (char **)malloc(sizeof(char *) * (argc + 1));
-//   while (argv[i])
-//   {
-//     if (setting[i] == 0)
-//       args[j++] = ft_strdup(argv[i]);
-//     i++;
-//   }
-//   args[j] = NULL;
-//   free(setting);
-//   return (args);
-// }
+
+static char     **get_args(int *setting, int argc, char const **argv)
+{
+  int             i;
+  int             j;
+  char            **args;
+
+  i = 0;
+  j = 0;
+  args = (char **)malloc(sizeof(char *) * (argc + 1));
+  while (argv[i])
+  {
+    if (setting[i] == 0)
+      args[j++] = ft_strdup(argv[i]);
+    i++;
+  }
+  args[j] = NULL;
+  free(setting);
+  return (args);
+}
 
 void  parse_options(t_args *args, int argc, char const **argv)
 {
   int                *setting;
-  // int             new_argc;
+  int                new_argc;
   t_list_man_option  *list_man;
   t_option           *option;
 
+  new_argc = argc;
   setting = (int *)malloc(sizeof(int) * argc);
+  ft_bzero(setting, sizeof(int) * argc);
   list_man = args->mans;
   while (list_man)
   {
@@ -110,23 +112,10 @@ void  parse_options(t_args *args, int argc, char const **argv)
     if (find_option_in_args(option, setting, argc, argv))
     {
       option->set = 1;
+      new_argc--;
     }
     list_man = list_man->next;
   }
-  (void)argc;
-  (void)argv;
-  // ft_bzero(setting, sizeof(int) * argc);
-  // new_argc = argc;
-  //
-  // tmp = *options;
-  // while (tmp)
-  // {
-  //   if (find_option_in_args(&tmp, setting, argc, argv))
-  //   {
-  //     tmp->set = 1;
-  //     new_argc--;
-  //   }
-  //   tmp = tmp->next;
-  // }
-  // return (get_args(setting, new_argc, argv));
+  args->argc = new_argc;
+  args->argv = get_args(setting, new_argc, argv);
 }
