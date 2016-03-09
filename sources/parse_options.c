@@ -95,6 +95,22 @@ static char     **get_args(int *setting, int argc, char const **argv)
   return (args);
 }
 
+static int  count_not_option(int *setting, int argc)
+{
+  int   i;
+  int   count;
+
+  i = 0;
+  count = 0;
+  while (i < argc)
+  {
+    if (setting[i] == 0)
+      count++;
+    i++;
+  }
+  return (count);
+}
+
 void  parse_options(t_args *args, int argc, char const **argv)
 {
   int                *setting;
@@ -110,12 +126,9 @@ void  parse_options(t_args *args, int argc, char const **argv)
   {
     option = HTAB_GET(args->options, t_option, list_man->key);
     if (find_option_in_args(option, setting, argc, argv))
-    {
       option->set = 1;
-      new_argc--;
-    }
     list_man = list_man->next;
   }
-  args->argc = new_argc;
-  args->argv = get_args(setting, new_argc, argv);
+  args->argc = count_not_option(setting, argc);
+  args->argv = get_args(setting, args->argc, argv);
 }
