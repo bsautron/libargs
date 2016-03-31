@@ -8,6 +8,8 @@ SOURCES = add_option.c \
 					show_args.c \
 					init_options.c \
 					option_is_set.c \
+					show_usage.c \
+					add_desc.c \
 					get_values_option.c
 
 SOURCES_FOLDER = sources

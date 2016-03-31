@@ -34,7 +34,7 @@ static void   print_argc(int argc)
 
 static void   print_argv(char **argv)
 {
-  ft_putstr("argc: ");
+  ft_putstr("argv: ");
   ft_putstr_tab(argv);
 }
 

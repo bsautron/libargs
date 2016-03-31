@@ -111,7 +111,7 @@ static int  count_not_option(int *setting, int argc)
   return (count);
 }
 
-void  parse_options(t_args *args, int argc, char const **argv)
+int  parse_options(t_args *args, int argc, char const **argv)
 {
   int                *setting;
   int                new_argc;
@@ -131,4 +131,10 @@ void  parse_options(t_args *args, int argc, char const **argv)
   }
   args->argc = count_not_option(setting, argc);
   args->argv = get_args(setting, args->argc, argv);
+  if (option_is_set(*args, "-h--help"))
+  {
+	  show_usage(*args);
+	  return (0);
+  }
+  return (1);
 }
