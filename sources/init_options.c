@@ -1,4 +1,5 @@
 #include <libargs.h>
+#include <libhash.h>
 
 void  init_options(t_args *args, char *name)
 {

@@ -1,6 +1,7 @@
 NAME = libargs
 DEPENDENCIES = libft \
 								liblist \
+								libhash \
 								libhtab
 SOURCES = add_option.c \
 					parse_options.c \
