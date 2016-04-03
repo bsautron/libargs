@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_option.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/03 18:38:22 by bsautron          #+#    #+#             */
+/*   Updated: 2016/04/03 18:46:23 by bsautron         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libargs.h>
 
-static t_list_man_option	*create_list_man_option(t_man_option *man, char *key)
+static t_list_man_option	*create_list_man_opt(t_man_option *man, char *key)
 {
 	t_list_man_option		*new;
 
@@ -10,38 +22,38 @@ static t_list_man_option	*create_list_man_option(t_man_option *man, char *key)
 	return (new);
 }
 
-static void *create_man_option(char *brief, char *large, char *desc)
+static void					*create_man_opt(char *b, char *l, char *desc)
 {
-	t_man_option  *new;
+	t_man_option	*new;
 
 	new = LIST_NEW(t_man_option);
-	new->brief = (brief) ? brief[1] : 0;
-	new->large = (large) ? ft_strdup(&large[2]) : NULL;
+	new->brief = (b) ? b[1] : 0;
+	new->large = (l) ? ft_strdup(&l[2]) : NULL;
 	new->desc = (desc) ? ft_strdup(desc) : NULL;
 	return (new);
 }
 
-void add_option(t_args *args, char *brief, char *large, char *desc)
+void						add_option(t_args *args, char *b, char *l, char *d)
 {
-	t_option			*new;
+	t_option		*new;
 	t_man_option	*man;
-	char					*key;
+	char			*key;
 
-	if (brief || large)
+	if (b || l)
 	{
-		man = create_man_option(brief, large, desc);
+		man = create_man_opt(b, l, d);
 		new = LIST_NEW(t_option);
-		if (!brief && large)
-			key = ft_strdup(large);
-		else if (brief && !large)
-			key = ft_strdup(brief);
+		if (!b && l)
+			key = ft_strdup(l);
+		else if (b && !l)
+			key = ft_strdup(b);
 		else
-			key = ft_strjoin(brief, large);
+			key = ft_strjoin(b, l);
 		new->key = key;
 		new->man = man;
 		new->set = 0;
 		new->values = NULL;
-		LIST_PUSH_BACK(&args->mans, create_list_man_option(man, key));
+		LIST_PUSH_BACK(&args->mans, create_list_man_opt(man, key));
 		HTAB_SET(&args->options, new);
 	}
 }

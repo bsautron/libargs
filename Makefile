@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/04/03 19:00:18 by bsautron          #+#    #+#              #
+#    Updated: 2016/04/03 19:00:44 by bsautron         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libargs
 DEPENDENCIES = libft \
 								liblist \
@@ -12,6 +24,7 @@ SOURCES = add_option.c \
 					show_usage.c \
 					add_desc.c \
 					add_usage.c \
+					treat_options.c \
 					get_values_option.c
 
 SOURCES_FOLDER = sources

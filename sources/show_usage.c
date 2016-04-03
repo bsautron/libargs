@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   show_usage.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsautron <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/04/03 18:46:27 by bsautron          #+#    #+#             */
+/*   Updated: 2016/04/03 19:09:14 by bsautron         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libargs.h>
 
-static void putstr_with_pad(char *str, int width)
+static void	putstr_with_pad(char *str, int width)
 {
 	int		len;
 	int		i;
@@ -17,7 +29,7 @@ static void putstr_with_pad(char *str, int width)
 	}
 }
 
-static void show_descs(t_commander_desc *desc)
+static void	show_descs(t_commander_desc *desc)
 {
 	t_commander_desc	*tmp;
 
@@ -32,47 +44,53 @@ static void show_descs(t_commander_desc *desc)
 	}
 }
 
-static void show_options(t_list_man_option *mans)
+static void	print_line(char brief, char *large, char *desc, int len)
+{
+	ft_putchar('\t');
+	if (brief)
+	{
+		ft_putchar('-');
+		ft_putchar(brief);
+		ft_putstr(", ");
+	}
+	else
+		ft_putstr("    ");
+	if (large)
+	{
+		ft_putstr("--");
+		putstr_with_pad(large, len);
+	}
+	else
+		putstr_with_pad("", len);
+	ft_putchar('\t');
+	ft_putstr(desc);
+	ft_putchar('\n');
+}
+
+static void	show_options(t_list_man_option *mans)
 {
 	t_list_man_option	*tmp;
-	int					len_max_large;
+	int					len_max;
 	int					len;
 
-	len_max_large = 0;
+	len_max = 0;
 	tmp = mans;
 	while (tmp)
 	{
-		if (tmp->man->large && (len = ft_strlen(tmp->man->large)) > len_max_large)
-			len_max_large = len;
+		if (tmp->man->large
+			&& (len = ft_strlen(tmp->man->large)) > len_max)
+			len_max = len;
 		tmp = tmp->next;
 	}
 	tmp = mans;
 	while (tmp)
 	{
-		ft_putchar('\t');
-		if (tmp->man->brief)
-		{
-			ft_putchar('-');
-			ft_putchar(tmp->man->brief);
-			ft_putstr(", ");
-		}
-		else
-			ft_putstr("    ");
-		if (tmp->man->large)
-		{
-			ft_putstr("--");
-			putstr_with_pad(tmp->man->large, len_max_large);
-		}
-		else
-			putstr_with_pad("", len_max_large);
-		ft_putchar('\t');
-		ft_putstr(tmp->man->desc);
-		ft_putchar('\n');
+		print_line(tmp->man->brief, tmp->man->large, tmp->man->desc, len_max);
 		tmp = tmp->next;
 	}
 }
 
-void show_usage(t_args args)
+void		show_usage(t_args args)
 {
 	ft_putstr("NAME:\n\t");
 	ft_putstr(args.name);
