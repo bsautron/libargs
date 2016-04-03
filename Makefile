@@ -6,7 +6,7 @@
 #    By: bsautron <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/03 19:00:18 by bsautron          #+#    #+#              #
-#    Updated: 2016/04/03 19:00:44 by bsautron         ###   ########.fr        #
+#    Updated: 2016/04/03 19:25:16 by bsautron         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,6 @@ clean:
 	rm -rf $(OBJECTS_FOLDER)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(LIB_NAME)
 
 re: fclean all
