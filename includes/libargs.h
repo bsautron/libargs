@@ -65,5 +65,6 @@ void 		show_usage(t_args args);
 int       option_is_set(t_args args, char *key);
 char      **get_values_option(t_args args, char *key);
 void 		add_desc(t_args *args, char *desc);
+void 		add_usage(t_args *args, char *usage);
 
 #endif

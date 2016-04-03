@@ -11,6 +11,7 @@ SOURCES = add_option.c \
 					option_is_set.c \
 					show_usage.c \
 					add_desc.c \
+					add_usage.c \
 					get_values_option.c
 
 SOURCES_FOLDER = sources
