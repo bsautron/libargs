@@ -42,17 +42,29 @@ static void show_options(t_list_man_option *mans)
 	tmp = mans;
 	while (tmp)
 	{
-		if ((len = ft_strlen(tmp->man->large)) > len_max_large)
+		if (tmp->man->large && (len = ft_strlen(tmp->man->large)) > len_max_large)
 			len_max_large = len;
 		tmp = tmp->next;
 	}
 	tmp = mans;
 	while (tmp)
 	{
-		ft_putstr("\t-");
-		ft_putchar(tmp->man->brief);
-		ft_putstr(", --");
-		putstr_with_pad(tmp->man->large, len_max_large);
+		ft_putchar('\t');
+		if (tmp->man->brief)
+		{
+			ft_putchar('-');
+			ft_putchar(tmp->man->brief);
+			ft_putstr(", ");
+		}
+		else
+			ft_putstr("    ");
+		if (tmp->man->large)
+		{
+			ft_putstr("--");
+			putstr_with_pad(tmp->man->large, len_max_large);
+		}
+		else
+			putstr_with_pad("", len_max_large);
 		ft_putchar('\t');
 		ft_putstr(tmp->man->desc);
 		ft_putchar('\n');
