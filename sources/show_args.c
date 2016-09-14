@@ -14,12 +14,9 @@
 
 static void		print_set(t_option *option)
 {
-	ft_putstr("    \033[0m");
-	ft_putstr(" -");
-	ft_putchar(option->man->brief);
-	ft_putstr(", --");
-	ft_putstr(option->man->large);
-	ft_putchar('\n');
+	ft_putstr((option->set) ? "\e[0;0;42m" : "\e[0;0;41m");
+	ft_putstr("    \e[0m");
+	print_option_line(option->man->brief, option->man->large, option->man->desc, 15);
 }
 
 static void		print_values(t_option *option)

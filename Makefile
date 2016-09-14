@@ -22,6 +22,7 @@ SOURCES = add_option.c \
 					init_options.c \
 					option_is_set.c \
 					show_usage.c \
+					print_option_line.c \
 					add_desc.c \
 					add_usage.c \
 					treat_options.c \
@@ -46,7 +47,13 @@ REBUILD_LIBRARIES = $(foreach dep,$(DEPENDENCIES),make re -C ../$(dep);)
 
 OBJECTS = $(SOURCES:%.c=%.o)
 
+MAIN = main.c
+MAIN_OBJECT = $(MAIN:%.c=%.o)
+
 all: init $(LIB_NAME)
+
+main: all
+	$(CC) $(MAIN) -I $(INCLUDES_FOLDER) $(INCLUDES_LIBRARIES) $(LIB_NAME) $(SOURCES_DEPENDENCIES)
 
 ifdef DEPENDENCIES
 init: $(SOURCES_DEPENDENCIES)
