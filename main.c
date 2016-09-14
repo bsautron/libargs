@@ -25,5 +25,12 @@ int main(int argc, char const *argv[])
 	printf("-- Options representation --\n");
 	show_args(args);
 
+	if (option_is_set(args, "-a--anonymous"))
+		printf("\nOK your are an anonymous!\n");
+	if (option_is_set(args, "-G"))
+		printf("\nOOOOOoooohhhh...\n");
+	if (option_is_set(args, "--soft_drink"))
+		printf("\nPfff... Small player!\n");
+
 	return (0);
 }
