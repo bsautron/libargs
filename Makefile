@@ -50,6 +50,8 @@ OBJECTS = $(SOURCES:%.c=%.o)
 MAIN = main.c
 MAIN_OBJECT = $(MAIN:%.c=%.o)
 
+.PHONY: main
+
 all: init $(LIB_NAME)
 
 main: all
